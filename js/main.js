@@ -1,5 +1,21 @@
+//将代码写进#code和styleTag里面
+function writeCode(code,fn) {
+	let domCode = document.querySelector('#code')
+	let n = 0
+	let id = setInterval(() => {
+		n += 1
+		domCode.innerHTML = Prism.highlight(code.substring(0, n), Prism.languages.css)
+		styleTag.innerHTML = code.substring(0, n)
+		if (n >= result.length) {
+			window.clearInterval(id)
+			fn.call()
+		}
+	}, 10)
 
- var result=`
+}
+
+
+var result = `
 *{
 	transition:all 1s;
 }
@@ -39,39 +55,33 @@ html{
 /* 我 需 要 一 张 白 纸  */
 `
 
-var n=0
-var id = setInterval(()=>{
-	n=n+1;
-	code.innerHTML=Prism.highlight(result.substring(0,n), Prism.languages.css);
-	styleTag.innerHTML=result.substring(0,n)
-	if(n>=result.length){
-		window.clearInterval(id)
-		fn2()
-		fn3()
-	}
-},10)
+writeCode(result, () => {
+	console.log('xxx')
+	createPaper()
+}
+)
 
-function fn2(){
-	var paper =document.createElement('div')
-	paper.id='paper'
+function createPaper() {
+	var paper = document.createElement('div')
+	paper.id = 'paper'
 	document.body.appendChild(paper)
 }
 
-function fn3(){
-	var result1=`
+function fn3() {
+	var result1 = `
 #paper{
 	width:100px;
 	height:100px;
 	background:red;
 }`
-	var n=0
-	var id=setInterval(()=>{
-		n=n+1
-		code.innerHTML=result + result1.substring(0,n)
-		code.innerHTML=Prism.highlight(code.innerHTML, Prism.languages.css);
-		styleTag.innerHTML=result + result1.substring(0,n)
-		if(n>=result1.length){
+	var n = 0
+	var id = setInterval(() => {
+		n = n + 1
+		code.innerHTML = result + result1.substring(0, n)
+		code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css);
+		styleTag.innerHTML = result + result1.substring(0, n)
+		if (n >= result1.length) {
 			window.clearInterval(id)
 		}
-	},30)
+	}, 30)
 }
