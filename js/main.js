@@ -12,7 +12,7 @@ function writeCss(prefix, code, fn) {
 			window.clearInterval(id)
 			fn.call()
 		}
-	}, 5)
+	}, 50)
 
 }
 
@@ -27,7 +27,7 @@ function writeMarkDown(markdown,fn){
 			window.clearInterval(id)
 			fn.call()
 		}
-	}, 10)
+	}, 80)
 	
 }
 
@@ -82,6 +82,7 @@ html{
 }
 
 /* 不 玩 了, 介 绍 开 始  */
+/* 首 先，准 备 一 个 白 板 */
 
 #code{
 	position:fixed;
@@ -117,22 +118,50 @@ var css2 = `
 `
 
 var md =`
-#自我介绍
-我叫xxx
-1990年4月15日出生
-xxx学校毕业
-
-#技能介绍
-
-#项目介绍
-1.xxx
-2.xxx
-3.xxx
-
-#联系方式
-QQ:
-Email:
-手机:
+# 自我介绍
+我叫 XXX
+1990 年 1 月出生
+XXX 学校毕业
+自学前端半年
+希望应聘前端开发岗位
+# 技能介绍
+熟悉 JavaScript CSS
+# 项目介绍
+1. XXX 轮播
+2. XXX 简历
+3. XXX 画板
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
+# 联系方式
+- QQ xxxxxxxx
+- Email xxxxxxxx
+- 手机 xxxxxxx
 `
 var css3 = `
 /* 这就是我的自我介绍
@@ -144,9 +173,10 @@ writeCss('', css1, () => {
 		writeMarkDown(md,()=>{
 			writeCss(css1,css2,()=>{
 				convertMarkdownToHtml(()=>{
-					css1+css2,css3,()=>{
+					writeCss(css1+css2,css3,()=>{
 						console.log('finished')
-					}
+					})
+					
 				})
 			})
 		})
@@ -170,3 +200,5 @@ function convertMarkdownToHtml(fn){
   markdownContainer.replaceWith(div)
   fn.call()
 }
+
+  
