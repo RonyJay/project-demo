@@ -1,21 +1,54 @@
-!function(){
-    function writeCode(prefix,code,fn){
+! function () {
+    var duration = 50
+
+    function writeCode(prefix, code, fn) {
         let container = document.querySelector('#code')
         let styleTag = document.querySelector('#styleTag')
-        let n=0
-        let id = setInterval(()=>{
-            n+=1
-            container.innerHTML = code.substring(0,n)
-            styleTag.innerHTML = code.substring(0,n)
-            container.scrollTop=container.scrollHeight
-            if(n>=code.length){
-                window.clearInterval(id)
+        let n = 0
+        //     let id = setInterval(()=>{
+        //         n+=1
+        //         container.innerHTML = code.substring(0,n)
+        //         styleTag.innerHTML = code.substring(0,n)
+        //         container.scrollTop=container.scrollHeight
+        //         if(n>=code.length){
+        //             window.clearInterval(id)
+        //             fn && fn.call()
+        //         }
+        //     },duration)
+        // }
+        /* setInterval都可以被setTimeout代替*/
+        setTimeout(function run() {
+            n += 1
+            container.innerHTML = code.substring(0, n)
+            styleTag.innerHTML = code.substring(0, n)
+            container.scrollTop = container.scrollHeight
+            if (n < code.length) {
+                setTimeout(run, duration);
+            } else {
                 fn && fn.call()
             }
-        },10)
+        }, duration);
     }
-
-let code=`
+    /*
+    按钮点击操作 
+    */
+    $('.actions').on('click', 'button', function (e) {
+        let $button = $(e.currentTarget) //获取到关于button的所有信息
+        let $speed = $button.attr('data-speed')
+        $button.addClass('active').siblings('.active').removeClass('active')
+        switch ($speed) {
+            case 'slow':
+                duration = 100
+                break
+            case 'normal':
+                duration = 30
+                break
+            case 'fast':
+                duration = 10
+                break
+        }
+    })
+    let code = `
 /*nose*/
 .nose{
     width: 0px;
@@ -93,6 +126,7 @@ let code=`
     border-bottom-left-radius: 40px 20px;
     transform: rotate(-22deg);
     right: 50%;
+    z-index:1;
     
 }
 .UpperLip.right{
@@ -101,13 +135,14 @@ let code=`
     border-left: none;
     border-bottom-right-radius: 40px 20px;
     transform: rotate(22deg);   
+    z-index:1;
 }
 .LowerLip-wrapper{
     position: absolute;
     left: 50%;
     margin-left: -150px;
     bottom: -53px;
-    z-index: -1;
+    z-index: 0;
     height: 161px;
     width:300px;
     overflow: hidden;
@@ -135,5 +170,6 @@ let code=`
     border-radius: 70px;   
 }
 `
-writeCode('',code)
+    writeCode('', code)
+
 }.call()
