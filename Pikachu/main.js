@@ -44,7 +44,7 @@
                 duration = 30
                 break
             case 'fast':
-                duration = 10
+                duration = 1
                 break
         }
     })
