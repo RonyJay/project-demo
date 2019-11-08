@@ -12,7 +12,7 @@ function writeCss(prefix, code, fn) {
 			window.clearInterval(id)
 			fn.call()
 		}
-	}, 50)
+	}, 10)
 
 }
 
@@ -27,7 +27,7 @@ function writeMarkDown(markdown,fn){
 			window.clearInterval(id)
 			fn.call()
 		}
-	}, 80)
+	}, 20)
 	
 }
 
@@ -88,23 +88,25 @@ html{
 	position:fixed;
 	left:0;
 	width:50%;
-	height:100%;
+	height:80%;
 }
 #paper{
 	position:fixed;
 	right:0;
 	width:45%;
-	height:100%;
+	height:80%;
 	background:grey;
 	padding:16px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
+
 }
 #paper > .content{
 	background:white;
 	height:100%;
 	width:100%;
+	overflow:auto;
 }
 
 /* 请 看 右 边 */
